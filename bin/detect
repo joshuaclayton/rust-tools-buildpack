@@ -1,8 +1,3 @@
 #!/bin/sh
 
-if [ !command -v group-similar &> /dev/null]; then
-  echo "group-similar could not be found"
-  exit 0
-else
-  exit 1
-fi
+exit 0

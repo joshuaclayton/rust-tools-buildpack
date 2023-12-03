@@ -2,13 +2,23 @@
 
 set -e
 
+BUILD_DIR=$1
+CACHE_DIR=$2
+BUILDPACK_DIR="$(dirname "$(dirname "$0")")"
+
+mkdir -p "$BUILD_DIR/bin/"
+
 indent() {
   sed -u 's/^/       /'
 }
 
-echo "Downloading applications..." | indent
+echo "Downloading applications in $(pwd)..." | indent
 
 curl -L --silent "https://github.com/joshuaclayton/group-similar/releases/download/0.1.0/group-similar-0.1.0-x86_64-unknown-linux-musl.tar.gz" | tar x -z
 
-echo "Moving installed applications..." | indent
+echo "Moving installed applications to $(pwd)..." | indent
 cp group-similar-0.1.0-x86_64-unknown-linux-musl/group-similar ./group-similar
+cp group-similar-0.1.0-x86_64-unknown-linux-musl/group-similar "$BUILD_DIR/bin/"
+ls -alh "$BUILD_DIR/bin/" | indent
+
+exit 0
