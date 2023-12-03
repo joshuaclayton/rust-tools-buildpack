@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -e
+
+indent() {
+  sed -u 's/^/       /'
+}
+
+echo "Downloading applications..." | indent
+
+curl -L --silent "https://github.com/joshuaclayton/group-similar/releases/download/0.1.0/group-similar-0.1.0-x86_64-unknown-linux-musl.tar.gz" | tar x -z
+
+echo "Moving installed applications..." | indent
+cp group-similar-0.1.0-x86_64-unknown-linux-musl/group-similar ./group-similar
